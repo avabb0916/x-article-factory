@@ -27,5 +27,23 @@
     "quality",
     "figures",
     "seo"
-  ]
+  ],
+  "files": [
+    "bin",
+    "lib",
+    "docs/RULES.md",
+    "README.md",
+    "README.en.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avabb0916/x-article-factory.git"
+  },
+  "homepage": "https://github.com/avabb0916/x-article-factory#readme",
+  "bugs": {
+    "url": "https://github.com/avabb0916/x-article-factory/issues"
+  },
+  "author": "avabb0916"
 }
