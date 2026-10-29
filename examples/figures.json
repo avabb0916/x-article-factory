@@ -1,0 +1,33 @@
+{
+  "figures": [
+    {
+      "name": "cover",
+      "type": "cover",
+      "kicker": "示例 · 环节",
+      "title": "一个配图<em>示例</em>",
+      "sub": "本地渲染，中文精确，零 API",
+      "brand": "示例品牌"
+    },
+    {
+      "name": "steps",
+      "type": "steps",
+      "title": "三步走",
+      "brand": "示例品牌",
+      "steps": [
+        { "name": "1 写", "desc": "先把话说清楚", "verify": "别人能复述" },
+        { "name": "2 画", "desc": "一张图一个结构", "verify": "3 秒看懂" },
+        { "name": "3 查", "desc": "用清单过一遍", "verify": "0 error" }
+      ],
+      "note": "顺序不能换"
+    },
+    {
+      "name": "checklist",
+      "type": "checklist",
+      "title": "发布前自检",
+      "sub": "存下来，每次照做",
+      "brand": "示例品牌",
+      "items": ["标题能独立看懂", "小标题 ≥5 个", "配图 5–9 张", "没有表格和代码块", "结尾有一句提问"],
+      "note": "全过再发"
+    }
+  ]
+}
