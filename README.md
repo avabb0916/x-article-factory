@@ -151,6 +151,13 @@ docs/RULES.md
 examples/           合格示例 + 可直接生成的图配置
 ```
 
+## 配套工具
+
+- [x-md-publisher](https://github.com/avabb0916/x-md-publisher) — Markdown → X 文章草稿
+- [md2wechat](https://github.com/avabb0916/md2wechat) — Markdown → 公众号草稿
+- [agent-skill-content-factory](https://github.com/avabb0916/agent-skill-content-factory) — 写作流程 Skill
+- [x-article-template](https://github.com/avabb0916/x-article-template) — 内容仓库模板
+
 ## License
 
 MIT
