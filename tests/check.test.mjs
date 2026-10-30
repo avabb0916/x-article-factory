@@ -61,3 +61,28 @@ test('封面比例告警', () => {
   const coverIssue = res.issues.find(i => i.code === 'cover-ratio');
   assert.equal(coverIssue, undefined, '1600x640 是 5:2，不应告警');
 });
+
+import { checkNumbering, checkWeakHeadings, renumber } from '../lib/numbering.mjs';
+
+test('编号：从零起与跳号会被标记', () => {
+  const md = '## 零、a\n\n## 二、b\n';
+  const codes = checkNumbering(md).issues.map(i => i.code);
+  assert.ok(codes.includes('heading-number-order'));
+  assert.ok(codes.includes('heading-starts-zero'));
+});
+
+test('编号：正常顺序不报错', () => {
+  const md = '## 一、a\n\n## 二、b\n\n## 三、c\n';
+  assert.equal(checkNumbering(md).issues.length, 0);
+});
+
+test('重排：把跳号改成连续', () => {
+  const out = renumber('## 零、a\n\n## 五、b\n');
+  assert.match(out, /## 一、a/);
+  assert.match(out, /## 二、b/);
+});
+
+test('弱标题：名词短语被标记', () => {
+  const codes = checkWeakHeadings('## 一、常见疑问\n\n## 二、三个常见坑\n').map(i => i.code);
+  assert.ok(codes.includes('weak-heading'));
+});

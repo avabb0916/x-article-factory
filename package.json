@@ -1,6 +1,6 @@
 {
   "name": "x-article-factory",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Quality gates for long-form X (Twitter) Articles: structure checks, AI-tell detection, publish-risk scan, and local figure generation.",
   "type": "module",
   "bin": {

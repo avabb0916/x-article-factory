@@ -60,7 +60,22 @@ xaf check article.md --json           # 给程序消费
 xaf check article.md --config my.json # 覆盖规则
 ```
 
-### 2. 生成配图
+### 2. 编号与标题规范
+
+```bash
+xaf numbering article.md          # 检查
+xaf numbering article.md --fix    # 自动重排
+```
+
+检查三件事：
+
+- 中文序号是否从「一」起、是否连续（不跳号）
+- 是否有标题缺编号
+- 是否有名词短语标题（建议改成判断句）
+
+`xaf check` 也会带出这三类提示。
+
+### 3. 生成配图
 
 ```bash
 xaf figures figures.json --out ./images
@@ -91,7 +106,7 @@ xaf figures figures.json --out ./images
 
 原理：本地 HTML → Chrome 截图。**中文绝对准确**（不用图像模型），秒级出图，零成本。
 
-### 3. 初始化
+### 4. 初始化
 
 ```bash
 xaf init my-article

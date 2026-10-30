@@ -5,6 +5,7 @@ import path from 'path';
 import { check } from '../lib/check.mjs';
 import { renderAll } from '../lib/figures.mjs';
 import { formatHuman, formatJson } from '../lib/report.mjs';
+import { normalizeFile } from '../lib/numbering.mjs';
 
 const argv = process.argv.slice(2);
 const cmd = argv[0];
@@ -18,6 +19,7 @@ function usage() {
 用法:
   xaf check <article.md> [--json] [--config config.json]    内容检查（exit 1 = 有 error）
   xaf figures <figures.json> --out <目录>                    本地生成配图（HTML→PNG）
+  xaf numbering <md...> [--fix]                              检查/重排中文序号与弱标题
   xaf init [目录]                                            生成文章骨架与图配置示例
 
 示例:
@@ -57,6 +59,26 @@ if (cmd === 'figures') {
   const results = renderAll(list, out);
   for (const r of results) console.log(`[OK] ${r.name} → ${r.file} (${r.width}x${r.height}, ${(r.bytes / 1024).toFixed(0)}KB)`);
   process.exit(0);
+}
+
+if (cmd === 'numbering') {
+  const files = positional;
+  if (!files.length) { console.error('用法: xaf numbering <md...> [--fix]'); process.exit(2); }
+  const fix = has('--fix');
+  let bad = 0;
+  for (const f of files) {
+    if (!fs.existsSync(f)) { console.error('找不到文件:', f); bad++; continue; }
+    const r = normalizeFile(f, { fix });
+    if (r.issues.length) {
+      bad++;
+      console.log(`\n${f}（${r.headings} 个二级标题）`);
+      for (const i of r.issues) console.log(`  [${i.level}] ${i.code}: ${i.msg}`);
+      if (r.fixed) console.log('  ✓ 已重排编号');
+    } else {
+      console.log(`${f}  ✓ 编号与标题规范`);
+    }
+  }
+  process.exit(bad && !fix ? 1 : 0);
 }
 
 if (cmd === 'init') {
